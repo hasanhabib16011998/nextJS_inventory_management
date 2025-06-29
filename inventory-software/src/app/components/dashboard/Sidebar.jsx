@@ -1,4 +1,4 @@
-import { ChevronLeft, HomeIcon, ShoppingCartIcon, Warehouse } from 'lucide-react'
+import { BaggageClaim, BarChart, Cable, ChevronLeft, File, HomeIcon, ShoppingBag, ShoppingBasket, ShoppingCartIcon, Warehouse } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -14,14 +14,37 @@ export default function Sidebar() {
 
             </div>
             {/* Links */}
-            <nav className='flex flex-col gap-4 p-3'>
-                <Link className='flex items-center space-x-2' href=''>
+            <nav className='flex flex-col gap-8 px-3'>
+                <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 px-2 rounded-md' href=''>
                     <HomeIcon className='w-4 h-4'/>
                     <span>Home</span>
                 </Link>
-                <Link className='flex items-center space-x-2' href=''>
-                    <Warehouse className='w-4 h-4'/>
+                <button className='flex items-center space-x-2 p-2' href=''>
+                    <BaggageClaim className='w-4 h-4'/>
                     <span>Inventory</span>
+                </button>
+                <button className='flex items-center space-x-2 p-2' href=''>
+                    <ShoppingBag className='w-4 h-4'/>
+                    <span>Sales</span>
+                </button>
+                <button className='flex items-center space-x-2 p-2' href=''>
+                    <ShoppingBasket className='w-4 h-4'/>
+                    <span>Purchases</span>
+                </button>
+
+                <Link className='flex items-center space-x-2 p-2' href='#'>
+                    <Cable className='w-4 h-4'/>
+                    <span>Integrations</span>
+                </Link>
+
+                <Link className='flex items-center space-x-2 p-2' href='#'>
+                    <BarChart className='w-4 h-4'/>
+                    <span>Reports</span>
+                </Link>
+
+                <Link className='flex items-center space-x-2 p-2' href='#'>
+                    <File className='w-4 h-4'/>
+                    <span>Reports</span>
                 </Link>
             </nav>
 
