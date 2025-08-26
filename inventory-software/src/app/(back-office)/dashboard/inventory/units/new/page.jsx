@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Warehouse() {
+export default function NewUnit() {
   return (
     <div>
-        <h2>Warehouse</h2>
+        <h2>NewUnit</h2>
     </div>
   )
 }

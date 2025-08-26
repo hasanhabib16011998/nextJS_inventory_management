@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Brands() {
+export default function Units() {
   return (
     <div>
-        <h2>Brands</h2>
+        <h2>Units</h2>
     </div>
   )
 }
