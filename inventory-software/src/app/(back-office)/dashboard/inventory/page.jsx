@@ -1,26 +1,61 @@
 import FixedHeader from '@/app/components/dashboard/FixedHeader'
-import { Shirt } from 'lucide-react'
-import Link from 'next/link'
+import OptionCard from '@/app/components/dashboard/OptionCard'
+import { Boxes, Component, ScrollText, Shirt } from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
+  const optionCards = [
+    {
+      title:"Item Groups",
+      description:"Create multiple variants of the same item using item groups",
+      itemLink: "/new",
+      linkTitle: "New Item Group",
+      enabled: true,
+      icon: Boxes,
+
+    },
+    {
+      title:"Items",
+      description:"Create standalone items and services that you buy and sell",
+      itemLink: "/new",
+      linkTitle: "New Item",
+      enabled: true,
+      icon: Shirt,
+
+    },
+    {
+      title:"Composite Items",
+      description:"Bundle different items together and sell them as kits",
+      itemLink: "/new",
+      linkTitle: "New Composite Item",
+      enabled: false,
+      icon: Component,
+
+    },
+    {
+      title:"Price Lists",
+      description:"Tweak your item prices for specific contacts or transactions",
+      itemLink: "/new",
+      linkTitle: "New Item",
+      enabled: true,
+      icon: ScrollText,
+
+    }
+  ]
+
   return (
     <div>
-        <FixedHeader/>
-        <div className='grid grid-col-1 lg:grid-cols-2 m-4'>
-          <div className='shadow-x1 bg-white flex flex-col items-center justify-center gap-4'>
-            <h2>Item Groups</h2>
-            <div className=''>
-              <Shirt strokeWidth=".5px" className='w-36 h-36'/>
-            </div>
-            <p className='line-clamp-1'>
-              Create multiple variants of the same item using Item groups
-            </p>
-            <Link href="#" className='py-2 rounded-sm bg-blue-600 inline-flex px-3 text-white items-center space-x-2'>
-            New Item Group
-            </Link>
-            <button className='py-2 rounded-sm bg-blue-600 inline-flex px-3 text-white inline-flex items-center space-x-2'>Enable</button>
-          </div> 
+        <FixedHeader newItemLink="/dashboard/inventory/items/new"/>
+        <div className='grid grid-col-1 lg:grid-cols-2 py-8 px-16 gap-6'>
+          {
+            optionCards.map((card,i)=>{
+              return(
+                <OptionCard key={i} optionData={card}/>
+              )
+            })
+          }
+
+
         </div>
     </div>
   )
