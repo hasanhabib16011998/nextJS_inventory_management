@@ -1,6 +1,6 @@
 import FixedHeader from '@/app/components/dashboard/FixedHeader'
 import OptionCard from '@/app/components/dashboard/OptionCard'
-import { Boxes, Component, ScrollText, Shirt } from 'lucide-react'
+import { Boxes, Component, RulerDimensionLine, ScrollText, Shirt, Warehouse } from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
@@ -8,7 +8,7 @@ export default function Inventory() {
     {
       title:"Item Groups",
       description:"Create multiple variants of the same item using item groups",
-      itemLink: "/new",
+      itemLink: "/dashboard/inventory/itemgroups/new",
       linkTitle: "New Item Group",
       enabled: true,
       icon: Boxes,
@@ -17,28 +17,46 @@ export default function Inventory() {
     {
       title:"Items",
       description:"Create standalone items and services that you buy and sell",
-      itemLink: "/new",
+      itemLink: "/dashboard/inventory/items/new",
       linkTitle: "New Item",
       enabled: true,
       icon: Shirt,
 
     },
     {
-      title:"Composite Items",
+      title:"Categories",
       description:"Bundle different items together and sell them as kits",
-      itemLink: "/new",
-      linkTitle: "New Composite Item",
-      enabled: false,
+      itemLink: "/dashboard/inventory/categories/new",
+      linkTitle: "New Category",
+      enabled: true,
       icon: Component,
 
     },
     {
-      title:"Price Lists",
+      title:"Brands",
       description:"Tweak your item prices for specific contacts or transactions",
-      itemLink: "/new",
-      linkTitle: "New Item",
+      itemLink: "/dashboard/inventory/brands/new",
+      linkTitle: "New Brand",
       enabled: true,
       icon: ScrollText,
+
+    },
+    {
+      title:"Warehouse",
+      description:"Tweak your item prices for specific contacts or transactions",
+      itemLink: "/dashboard/inventory/warehouse/new",
+      linkTitle: "New Warehouse",
+      enabled: true,
+      icon: Warehouse,
+
+    },
+    {
+      title:"Units",
+      description:"Tweak your item prices for specific contacts or transactions",
+      itemLink: "/dashboard/inventory/units/new",
+      linkTitle: "New Unit",
+      enabled: true,
+      icon: RulerDimensionLine,
 
     }
   ]
