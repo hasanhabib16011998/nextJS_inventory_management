@@ -4,7 +4,7 @@ import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/app/components/ui/collapsible"
 import CollapsibleLink from './CollapsibleLink';
 import { ChevronRight } from 'lucide-react';
 
