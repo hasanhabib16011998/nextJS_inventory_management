@@ -1,5 +1,6 @@
 "use client"
 import FormHeader from '@/app/components/dashboard/FormHeader'
+import ImageUpload from '@/app/components/FormInputs/ImageUpload';
 import SelectInput from '@/app/components/FormInputs/SelectInput';
 import SubmitButton from '@/app/components/FormInputs/SubmitButton';
 import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
@@ -157,6 +158,7 @@ export default function NewItem() {
 
           <TextAreaInput label="Item Notes" name="notes" register={register} errors={errors} type="text" />
 
+          <ImageUpload/>
 
         </div>
 
