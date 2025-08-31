@@ -73,7 +73,7 @@ export default function Inventory() {
   return (
     <div>
         <FixedHeader newItemLink="/dashboard/inventory/items/new"/>
-        <div className='grid grid-col-1 lg:grid-cols-2 py-8 px-16 gap-6'>
+        <div className='grid grid-col-1 lg:grid-cols-3 md:grid-cols-2 py-8 px-16 gap-6'>
           {
             optionCards.map((card,i)=>{
               return(
