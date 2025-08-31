@@ -1,6 +1,6 @@
 import FixedHeader from '@/app/components/dashboard/FixedHeader'
 import OptionCard from '@/app/components/dashboard/OptionCard'
-import { Boxes, Component, RulerDimensionLine, ScrollText, Shirt, Warehouse } from 'lucide-react'
+import { Boxes, Component, Layers, RulerDimensionLine, ScrollText, Shirt, Warehouse } from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
@@ -57,6 +57,15 @@ export default function Inventory() {
       linkTitle: "New Unit",
       enabled: true,
       icon: RulerDimensionLine,
+
+    },
+    {
+      title:"Inventory Adjustments",
+      description:"Transfer stock from warehouse to warehouse",
+      itemLink: "/dashboard/inventory/adjustments/new",
+      linkTitle: "New Adjustment",
+      enabled: true,
+      icon: Layers,
 
     }
   ]

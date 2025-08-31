@@ -27,7 +27,7 @@ export default function Sidebar() {
         },
         {
             title:"Inventory Adjustments",
-            href:"/dashboard/inventory"
+            href:"/dashboard/inventory/adjustments/new/"
         },
 
     ]
