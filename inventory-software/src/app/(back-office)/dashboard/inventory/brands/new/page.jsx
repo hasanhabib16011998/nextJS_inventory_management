@@ -5,6 +5,7 @@ import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
 import TextInput from '@/app/components/FormInputs/TextInput';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast';
 
 export default function NewBrand() {
   const {
@@ -29,6 +30,7 @@ export default function NewBrand() {
       })
       if(response.ok){
         console.log(response);
+        toast.success('Successfully created brand');
         reset();
         setLoading(false)
       }

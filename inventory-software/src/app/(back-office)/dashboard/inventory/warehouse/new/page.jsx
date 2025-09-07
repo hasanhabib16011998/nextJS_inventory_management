@@ -7,6 +7,7 @@ import TextInput from '@/app/components/FormInputs/TextInput';
 import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast';
 
 export default function NewWarehouse() {
   const {
@@ -42,6 +43,7 @@ export default function NewWarehouse() {
       })
       if(response.ok){
         console.log(response);
+        toast.success("New Warehouse created successfully");
         reset();
         setLoading(false)
       }

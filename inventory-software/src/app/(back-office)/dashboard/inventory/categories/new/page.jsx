@@ -6,6 +6,7 @@ import TextInput from '@/app/components/FormInputs/TextInput';
 import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast';
 
 export default function NewCategory() {
   const {
@@ -30,8 +31,9 @@ export default function NewCategory() {
       })
       if(response.ok){
         console.log(response);
+        toast.success('Successfully created category');
         reset();
-        setLoading(false)
+        setLoading(false);
       }
       
 
