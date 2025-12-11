@@ -30,7 +30,8 @@ model Item {
   brandId      String   @db.ObjectId
   sellingPrice Float
   buyingPrice  Float
-  supplier     String
+  supplier     Supplier @relation(fields: [supplierId], references: [id])
+  supplierId   String   @db.ObjectId
   reOrderPoint Int
   location     String?
   imageURL     String
@@ -74,6 +75,7 @@ model Supplier {
   paymentTerms  String?
   taxID         String?
   notes         String?
+  Item          Item[]
 }
 
 model Post {

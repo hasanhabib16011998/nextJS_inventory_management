@@ -1,6 +1,6 @@
 import FixedHeader from '@/app/components/dashboard/FixedHeader'
 import OptionCard from '@/app/components/dashboard/OptionCard'
-import { Boxes, Component, Layers, RulerDimensionLine, ScrollText, Shirt, Warehouse } from 'lucide-react'
+import { Boxes, Component, Layers, RulerDimensionLine, ScrollText, Shirt, Warehouse ,Factory} from 'lucide-react'
 import React from 'react'
 
 export default function Inventory() {
@@ -57,6 +57,15 @@ export default function Inventory() {
       linkTitle: "New Unit",
       enabled: true,
       icon: RulerDimensionLine,
+
+    },
+    {
+      title:"Supplier",
+      description:"Tweak your item prices for specific contacts or transactions",
+      itemLink: "/dashboard/inventory/suppliers/new",
+      linkTitle: "New Supplier",
+      enabled: true,
+      icon: Factory,
 
     },
     {
