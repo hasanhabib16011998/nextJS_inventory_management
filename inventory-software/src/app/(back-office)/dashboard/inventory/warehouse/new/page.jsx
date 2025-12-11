@@ -4,10 +4,9 @@ import SelectInput from '@/app/components/FormInputs/SelectInput';
 import SubmitButton from '@/app/components/FormInputs/SubmitButton';
 import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
 import TextInput from '@/app/components/FormInputs/TextInput';
-import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast';
+import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewWarehouse() {
   const {
@@ -30,30 +29,11 @@ export default function NewWarehouse() {
   ]
 
   async function onSubmit(data){
-    try {
-      setLoading(true);
-      console.log(data);
-      const baseURL = "http://localhost:3000";
-      const response = await fetch(`${baseURL}/api/warehouse`, {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data),
-      })
-      if(response.ok){
-        console.log(response);
-        toast.success("New Warehouse created successfully");
-        reset();
-        setLoading(false)
-      }
-      
-
-    } catch(error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    const endPoint = 'api/warehouse';
+    makePostRequest(setLoading, endPoint, data, "Warehouse", reset);
   }
+
   return (
     <div>
       {/* Header */}

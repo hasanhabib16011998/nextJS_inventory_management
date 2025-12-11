@@ -8,6 +8,7 @@ import TextInput from '@/app/components/FormInputs/TextInput';
 import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewItem() {
   const {
@@ -92,28 +93,9 @@ export default function NewItem() {
   
 
   async function onSubmit(data){
-    try {
-      setLoading(true);
-      console.log(data);
-      const baseURL = "http://localhost:3000";
-      const response = await fetch(`${baseURL}/api/items`, {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data),
-      })
-      if(response.ok){
-        console.log(response);
-        reset();
-        setLoading(false)
-      }
-      
-
-    } catch(error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    const endPoint = 'api/items';
+    makePostRequest(setLoading, endPoint, data, "Item", reset);
   }
   return (
     <div>

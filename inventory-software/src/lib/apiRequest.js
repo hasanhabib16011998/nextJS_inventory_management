@@ -1,11 +1,13 @@
 import toast from 'react-hot-toast';
 
 
-export async function makeAPIRequest( setLoading, url, data, resourceName, reset ) {
+export async function makePostRequest( setLoading, endPoint, data, resourceName, reset ) {
 
     try {
         setLoading(true);
         console.log(data);
+        const baseURL = "http://localhost:3000";
+        const url = `${baseURL}/${endPoint}`;
         const response = await fetch(url, {
           method: "POST",
           headers:{

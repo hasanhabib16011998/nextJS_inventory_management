@@ -1,14 +1,11 @@
 "use client"
 import FormHeader from '@/app/components/dashboard/FormHeader'
-import SelectInput from '@/app/components/FormInputs/SelectInput';
 import SubmitButton from '@/app/components/FormInputs/SubmitButton';
 import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
 import TextInput from '@/app/components/FormInputs/TextInput';
-import { makeAPIRequest } from '@/lib/apiRequest';
-import { Plus } from 'lucide-react';
+import { makePostRequest } from '@/lib/apiRequest';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast';
 
 export default function NewSupplier() {
   const {
@@ -21,14 +18,13 @@ export default function NewSupplier() {
 
   async function onSubmit(data){
     console.log(data);
-    const baseURL = "http://localhost:3000";
-    const url = `${baseURL}/api/suppliers`;
-    makeAPIRequest(setLoading, url, data, "Supplier", reset);
+    const endPoint = 'api/suppliers';
+    makePostRequest(setLoading, endPoint, data, "Supplier", reset);
   }
   return (
     <div>
       {/* Header */}
-      <FormHeader title="New Warehouse" href="/dashboard/inventory" />
+      <FormHeader title="New Supplier" href="/dashboard/inventory" />
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3'>
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>

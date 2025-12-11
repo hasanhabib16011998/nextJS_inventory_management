@@ -7,6 +7,8 @@ import TextInput from '@/app/components/FormInputs/TextInput';
 import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { makePostRequest } from '@/lib/apiRequest';
+
 
 export default function AddInventoryForm() {
   const {
@@ -20,37 +22,37 @@ export default function AddInventoryForm() {
   const selectOptions = [
     {
       label:"Dhaka",
-      value: "dhaka",
+      value: "68bd739b0db67bef3dc1520b",
     },
     {
       label:"Gazipur",
-      value: "gazipur",
+      value: "68d123820e5784a50f142be9",
     },
-  ]
+    {
+      label:"Chittagong",
+      value: "693aa5a186432a126f4ef8dd",
+    },
+  ];
+
+  const itemOptions = [
+    {
+      label:"Item A",
+      value: "Item A",
+    },
+    {
+      label:"Item B",
+      value: "Item B",
+    },
+    {
+      label:"Item C",
+      value: "Item C",
+    },
+  ];
 
   async function onSubmit(data){
-    try {
-      setLoading(true);
-      console.log(data);
-      const baseURL = "http://localhost:3000";
-      const response = await fetch(`${baseURL}/api/adjustments/add`, {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data),
-      })
-      if(response.ok){
-        console.log(response);
-        reset();
-        setLoading(false)
-      }
-      
-
-    } catch(error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    const endPoint = 'api/adjustments/add';
+    makePostRequest(setLoading, endPoint, data, "Inventory", reset);
   }
   return (
     <div>
@@ -59,10 +61,11 @@ export default function AddInventoryForm() {
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
           <TextInput label="Reference Number" name="referenceNumber" register={register} errors={errors} type="number"/>
 
+          <SelectInput name="itemId" label="Select the Item" register={register} containerWidth='w-full' options={itemOptions}/>
 
           <TextInput label="Enter quantity of stock to add" name="addStockQty" register={register} errors={errors} type="number" containerWidth="w-full"/>
 
-          <SelectInput name="warehouseId" label="Select the Warehouse that will receive stock" register={register} containerWidth='w-full' options={selectOptions}/>
+          <SelectInput name="receivingWarehouseId" label="Select the Warehouse that will receive stock" register={register} containerWidth='w-full' options={selectOptions}/>
 
 
           {/* Description */}

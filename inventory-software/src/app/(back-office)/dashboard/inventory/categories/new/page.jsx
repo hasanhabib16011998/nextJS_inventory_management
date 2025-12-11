@@ -7,6 +7,7 @@ import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast';
+import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewCategory() {
   const {
@@ -18,30 +19,11 @@ export default function NewCategory() {
   const [loading, setLoading] = useState(false);
 
   async function onSubmit(data){
-    try {
-      setLoading(true);
-      console.log(data);
-      const baseURL = "http://localhost:3000";
-      const response = await fetch(`${baseURL}/api/categories`, {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data),
-      })
-      if(response.ok){
-        console.log(response);
-        toast.success('Successfully created category');
-        reset();
-        setLoading(false);
-      }
-      
-
-    } catch(error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    const endPoint = 'api/categories';
+    makePostRequest(setLoading, endPoint, data, "Category", reset);
   }
+
   return (
     <div>
       {/* Header */}

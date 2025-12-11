@@ -20,37 +20,37 @@ export default function TransferInventoryForm() {
   const selectOptions = [
     {
       label:"Dhaka",
-      value: "dhaka",
+      value: "68bd739b0db67bef3dc1520b",
     },
     {
       label:"Gazipur",
-      value: "gazipur",
+      value: "68d123820e5784a50f142be9",
     },
-  ]
+    {
+      label:"Chittagong",
+      value: "693aa5a186432a126f4ef8dd",
+    },
+  ];
+
+  const itemOptions = [
+    {
+      label:"Item A",
+      value: "Item A",
+    },
+    {
+      label:"Item B",
+      value: "Item B",
+    },
+    {
+      label:"Item C",
+      value: "Item C",
+    },
+  ];
 
   async function onSubmit(data){
-    try {
-      setLoading(true);
-      console.log(data);
-      const baseURL = "http://localhost:3000";
-      const response = await fetch(`${baseURL}/api/adjustments/transfer`, {
-        method: "POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(data),
-      })
-      if(response.ok){
-        console.log(response);
-        reset();
-        setLoading(false)
-      }
-      
-
-    } catch(error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    const endPoint = 'api/adjustments/transfer';
+    makePostRequest(setLoading, endPoint, data, "Inventory Transer", reset);
   }
   return (
     <div>
@@ -59,9 +59,13 @@ export default function TransferInventoryForm() {
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
         <TextInput label="Reference Number" name="referenceNumber" register={register} errors={errors} type="number"/>
 
+          <SelectInput name="itemId" label="Select the Item" register={register} containerWidth='w-full' options={itemOptions}/>
+
           <TextInput label="Enter amount of stock transfer" name="transferStockQty" register={register} errors={errors} type="number" containerWidth="w-full"/>
 
-          <SelectInput name="receivingBranchId" label="Select the Branch that will receive stock" register={register} containerWidth='w-full' options={selectOptions}/>
+          <SelectInput name="givingWarehouseId" label="Select the Branch that will give the stock" register={register} containerWidth='w-full' options={selectOptions}/>
+
+          <SelectInput name="receivingWarehouseId" label="Select the Branch that will receive the stock" register={register} containerWidth='w-full' options={selectOptions}/>
 
 
           {/* Description */}
