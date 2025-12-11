@@ -37,6 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 playlist: https://www.youtube.com/playlist?list=PLDn5_2K0bUmcBCllw3MHfCav6pHjJJ99Y
 
-Episode 6 ongoing 2:24:10
+Episode 6 complete
 
-https://www.youtube.com/playlist?list=PLDn5_2K0bUmcBCllw3MHfCav6pHjJJ99Y
