@@ -9,10 +9,10 @@ datasource db {
 }
 
 model Category {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String?
-  items       Item[]   @relation("CategoryItems")
+  items       Item[]  @relation("CategoryItems")
 }
 
 model Item {
@@ -20,20 +20,20 @@ model Item {
   name         String
   description  String?
   category     Category @relation("CategoryItems", fields: [categoryId], references: [id])
-  categoryId   String
+  categoryId   String   @db.ObjectId
   sku          String   @unique
   barcode      String?
   quantity     Int
   unit         Unit     @relation("UnitItems", fields: [unitId], references: [id])
-  unitId       String
+  unitId       String   @db.ObjectId
   brand        Brand    @relation("BrandItems", fields: [brandId], references: [id])
-  brandId      String
-  unitPrice    Float
-  costPrice    Float
+  brandId      String   @db.ObjectId
+  sellingPrice Float
+  buyingPrice  Float
   supplier     String
-  reorderPoint Int
+  reOrderPoint Int
   location     String?
-  images       String[]
+  imageURL     String
   weight       Float?
   dimensions   String?
   taxRate      Float
@@ -41,24 +41,26 @@ model Item {
 }
 
 model Unit {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  abbreviation  String
-  items         Item[]   @relation("UnitItems")
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  abbreviation String
+  items        Item[] @relation("UnitItems")
 }
 
 model Brand {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  title   String
-  items   Item[]   @relation("BrandItems")
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  items Item[] @relation("BrandItems")
 }
 
 model Warehouse {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  location      String?
-  description   String?
-  warehouseType String
+  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
+  title                   String
+  location                String?
+  description             String?
+  warehouseType           String
+  AddStockAdjustment      AddStockAdjustment[]
+  TransferStockAdjustment TransferStockAdjustment[]
 }
 
 model Supplier {
@@ -75,15 +77,15 @@ model Supplier {
 }
 
 model Post {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   title    String
-  author   User    @relation("UserPosts", fields: [authorId], references: [id], onDelete: Cascade)
-  authorId String
+  author   User   @relation("UserPosts", fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String @db.ObjectId
 }
 
 model User {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  posts Post[]  @relation("UserPosts")
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  posts Post[] @relation("UserPosts")
 }
 
 model YourModel {
@@ -94,9 +96,19 @@ model YourModel {
 }
 
 model AddStockAdjustment {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  addStockQty   Float
-  notes   String?
-  warehouseType String
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  referenceNumber String
+  addStockQty     Int
+  notes           String?
+  warehouse       Warehouse @relation(fields: [warehouseId], references: [id])
+  warehouseId     String    @db.ObjectId
+}
+
+model TransferStockAdjustment {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  referenceNumber  String
+  transferStockQty Int
+  notes            String?
+  warehouse        Warehouse @relation(fields: [warehouseId], references: [id])
+  warehouseId      String    @db.ObjectId
 }
