@@ -2,10 +2,10 @@ import { HelpCircle, LayoutGrid, List, MoreHorizontal, Plus } from 'lucide-react
 import Link from 'next/link'
 import React from 'react'
 
-export default function FixedHeader({newItemLink}) {
+export default function FixedHeader({title, newItemLink}) {
   return (
     <div className='flex justify-between items-center py-5 bg-white px-4'>
-      <button className='item'>All Items</button>
+      <button className='item'>{title}</button>
       <div className='flex gap-4'>
         {/* New, List, LayoutGrid: horizontal */}
         <div className='pr-2 border-r border-gray-300 flex items-center gap-x-2'>

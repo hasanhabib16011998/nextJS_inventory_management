@@ -1,9 +1,10 @@
-import React from 'react'
+import FixedHeader from '@/app/components/dashboard/FixedHeader'
+
 
 export default function Categories() {
   return (
     <div>
-        <h2>Categories</h2>
+      <FixedHeader title="Categories" newItemLink="/dashboard/inventory/categories/new" />
     </div>
   )
 }
