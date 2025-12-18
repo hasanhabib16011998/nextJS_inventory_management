@@ -1,50 +1,38 @@
 import { NextResponse } from "next/server";
+import db from "@/lib/db";
 
 export async function POST(request) {
   try {
-    const {
-      title,
-      categoryId,
-      sku,
-      barcode,
-      qty,
-      unitId,
-      brandId,
-      supplierId,
-      warehouseId,
-      buyingPrice,
-      sellingPrice,
-      reorderPoint,
-      weight,
-      taxRate,
-      description,
-      notes,
-    } = await request.json();
+    const data = await request.json();
 
-    // Mock item object to return (normally you'd save this to DB)
-    const newItem = {
-      title,
-      categoryId,
-      sku,
-      barcode,
-      qty,
-      unitId,
-      brandId,
-      supplierId,
-      warehouseId,
-      buyingPrice,
-      sellingPrice,
-      reorderPoint,
-      weight,
-      taxRate,
-      description,
-      notes,
-      createdAt: new Date().toISOString(),
+    // 1. Convert string values to correct Numeric types for Prisma/MongoDB
+    const itemData = {
+      title: data.title, // Mapping form 'title' to schema 'name'
+      description: data.description,
+      categoryId: data.categoryId,
+      sku: data.sku,
+      barcode: data.barcode,
+      quantity: parseInt(data.qty), // Conversion to Int
+      unitId: data.unitId,
+      brandId: data.brandId,
+      supplierId: data.supplierId,
+      buyingPrice: parseFloat(data.buyingPrice), // Conversion to Float
+      sellingPrice: parseFloat(data.sellingPrice), // Conversion to Float
+      reOrderPoint: parseInt(data.reorderPoint), // Mapping 'reorderPoint' to 'reOrderPoint'
+      location: data.location || "",
+      imageURL: data.imageUrl, // Ensure this matches your ImageUpload output
+      weight: data.weight ? parseFloat(data.weight) : null,
+      dimensions: data.dimensions || "",
+      taxRate: parseFloat(data.taxRate),
+      notes: data.notes,
     };
+    const newItem = await db.item.create({
+      data: itemData,
+    });
 
     console.log("✅ New Item Created:", newItem);
 
-    return NextResponse.json(newItem, { status: 201 });
+    return NextResponse.json(itemData, { status: 201 });
   } catch (error) {
     console.error("❌ Error creating item:", error);
     return NextResponse.json(

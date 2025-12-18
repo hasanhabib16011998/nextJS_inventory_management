@@ -1,5 +1,4 @@
 "use client"
-import FormHeader from '@/app/components/dashboard/FormHeader'
 import ImageUpload from '@/app/components/FormInputs/ImageUpload';
 import SelectInput from '@/app/components/FormInputs/SelectInput';
 import SubmitButton from '@/app/components/FormInputs/SubmitButton';
@@ -17,14 +16,17 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
     formState: { errors },
   } = useForm();
   const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
 
 
   
 
   async function onSubmit(data){
+    data.imageURL = imageUrl;
     console.log(data);
     const endPoint = 'api/items';
     makePostRequest(setLoading, endPoint, data, "Item", reset);
+    setImageUrl(""); // Reset image after success
   }
   return (
     <>
@@ -67,7 +69,7 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
 
           <TextAreaInput label="Item Notes" name="notes" register={register} errors={errors} type="text" />
 
-          <ImageUpload/>
+          <ImageUpload imageUrl={imageUrl} setImageUrl={setImageUrl} />
 
         </div>
 
