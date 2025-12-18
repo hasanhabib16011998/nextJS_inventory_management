@@ -20,7 +20,7 @@ export async function POST(request) {
       sellingPrice: parseFloat(data.sellingPrice), // Conversion to Float
       reOrderPoint: parseInt(data.reorderPoint), // Mapping 'reorderPoint' to 'reOrderPoint'
       location: data.location || "",
-      imageURL: data.imageUrl, // Ensure this matches your ImageUpload output
+      imageURL: data.imageURL, // Ensure this matches your ImageUpload output
       weight: data.weight ? parseFloat(data.weight) : null,
       dimensions: data.dimensions || "",
       taxRate: parseFloat(data.taxRate),
@@ -42,5 +42,23 @@ export async function POST(request) {
       },
       { status: 500 }
     );
+  }
+}
+
+export async function GET(request) {
+  try{
+      const items = await db.item.findMany({
+          orderBy: { createdAt: 'desc' }
+      });
+      return NextResponse.json(items);
+
+  } catch(error) {
+      console.log(error);
+      return NextResponse.json({
+          error,
+          message: "Failed to fetch items"
+      },{
+          status:500,
+      });
   }
 }

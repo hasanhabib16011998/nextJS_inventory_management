@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { CldUploadWidget } from 'next-cloudinary';
 
-export default function ImageUpload({ imageUrl, setImageUrl }) {
+export default function ImageUpload({ imageURL, setImageURL }) {
     const [resource, setResource] = useState();
 
     return (
@@ -10,9 +10,11 @@ export default function ImageUpload({ imageUrl, setImageUrl }) {
             <CldUploadWidget 
                 uploadPreset='hasan_cloudinary_preset'
                 onSuccess={(result) => {
+                    const url = result.info.secure_url;
                     setResource(result.info);
-                    setImageUrl(result.info.secure_url);
-                    console.log(result.info);
+                    setImageURL(url);
+                    console.log("Image is uploaded",result.info);
+                    console.log('image url:',url);
                 }}
             >
                 {({ open }) => (
