@@ -3,10 +3,8 @@ import FormHeader from '@/app/components/dashboard/FormHeader'
 import SubmitButton from '@/app/components/FormInputs/SubmitButton';
 import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
 import TextInput from '@/app/components/FormInputs/TextInput';
-import { Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast';
 import { makePostRequest } from '@/lib/apiRequest';
 
 export default function NewCategory() {
