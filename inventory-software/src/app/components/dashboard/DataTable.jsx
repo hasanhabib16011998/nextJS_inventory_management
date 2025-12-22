@@ -1,3 +1,5 @@
+import { Pencil, Trash, Trash2 } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 export default function DataTable({ data, columns }) {
@@ -7,12 +9,13 @@ export default function DataTable({ data, columns }) {
                 <thead className="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                     <tr>
                         {
-                            columns.map((item,i)=>{
+                            columns.map((columnName,i)=>{
                                 return (
-                                    <th key={i} scope="col" className="px-6 py-3 font-medium uppercase">{item}</th>
+                                    <th key={i} scope="col" className="px-6 py-3 font-medium uppercase">{columnName}</th>
                                 )
                             })
                         }
+                        <th scope="col" class="px-6 py-3 font-medium">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,14 +23,23 @@ export default function DataTable({ data, columns }) {
                         data.map((item,i)=>{
                             return(
                                 <tr key={i} className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                                    <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                        {item.title}
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        {item.description}
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <a href="#" className="font-medium text-fg-brand hover:underline">Edit</a>
+                                    {columns.map((columnName,i)=>{
+                                        return(
+                                            <td key={i} className='px-6 py-4'>
+                                                {item[columnName]}
+                                            </td>
+                                        )
+
+                                    })}
+                                    <td class="px-6 py-4 flex items-center space-x-4">
+                                        <Link href="#" className="font-medium text-blue-600 dark:text-blue-500 flex items-center space-x-2">
+                                        <Pencil className='w-4 h-4'/>
+                                        <span>Edit</span>
+                                        </Link>
+                                    <button className="font-medium text-red-600 dark:red-blue-500 flex items-center space-x-1">
+                                    <Trash2 className='w-4 h-4'/>
+                                    <span>Delete</span>
+                                    </button>
                                     </td>
                                 </tr>
                             )
