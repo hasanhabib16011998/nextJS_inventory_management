@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
 
 
@@ -30,4 +31,37 @@ export async function makePostRequest( setLoading, endPoint, data, resourceName,
         setLoading(false);
         console.log(error);
       }
+}
+
+export async function makePutRequest( setLoading, endPoint, data, resourceName,redirectUrl, reset ) {
+
+  try {
+      const route = useRouter();
+      setLoading(true);
+      console.log(data);
+      const baseURL = "http://localhost:3000";
+      const url = `${baseURL}/${endPoint}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify(data),
+      })
+      if(response.ok){
+        console.log(response);
+        setLoading(false);
+        toast.success(`${resourceName} updated successfully!`);
+        router.push(redirectUrl)
+        
+      } else {
+          setLoading(false);
+          toast.error(`Failed to update ${resourceName}.`);
+      }
+      
+
+    } catch(error) {
+      setLoading(false);
+      console.log(error);
+    }
 }

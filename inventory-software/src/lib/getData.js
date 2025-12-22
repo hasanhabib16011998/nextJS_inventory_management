@@ -1,4 +1,4 @@
-export async function getData(endPoint, ) {
+export async function getData(endPoint) {
     try {
         const baseURL = 'http://localhost:3000'
         const response = await fetch(`${baseURL}/api/${endPoint}`);
