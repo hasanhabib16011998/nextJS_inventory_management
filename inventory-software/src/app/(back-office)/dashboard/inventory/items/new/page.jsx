@@ -18,7 +18,7 @@ export default async function NewItem() {
   return (
     <div>
       {/* Header */}
-      <FormHeader title="New item" href="/dashboard/inventory" />
+      <FormHeader title="New item" href="/dashboard/inventory/items" />
       <CreateItemForm 
         categories={categories} 
         units={units} 
