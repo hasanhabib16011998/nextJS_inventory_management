@@ -79,7 +79,7 @@ export default function Sidebar() {
 
     ]
     return (
-        <div className='w-56 min-h-screen bg-slate-900 text-slate-50 justify-between'>
+        <div className='w-56 h-full bg-slate-900 text-slate-50 flex flex-col justify-between shrink-0 overflow-y-auto'>
             {/* Top Part */}
             <div className='flex flex-col'>
                 {/* Logo */}

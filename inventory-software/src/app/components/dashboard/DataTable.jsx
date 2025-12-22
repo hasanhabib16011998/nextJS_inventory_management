@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function DataTable({ data, columns }) {
     return (
-        <div className="relative overflow-x-auto bg-white shadow-md sm:rounded-lg">
+        <div className="overflow-x-auto bg-white shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-body">
                 <thead className="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                     <tr>
@@ -31,7 +31,7 @@ export default function DataTable({ data, columns }) {
                                         )
 
                                     })}
-                                    <td class="px-6 py-4 flex items-center space-x-4">
+                                    <td className="px-6 py-4 flex items-center space-x-4">
                                         <Link href="#" className="font-medium text-blue-600 dark:text-blue-500 flex items-center space-x-2">
                                         <Pencil className='w-4 h-4'/>
                                         <span>Edit</span>
