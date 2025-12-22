@@ -48,7 +48,11 @@ export async function POST(request) {
 export async function GET(request) {
   try{
       const items = await db.item.findMany({
-          orderBy: { createdAt: 'desc' }
+          orderBy: { createdAt: 'desc' },
+          include: {
+            category:true,
+            supplier:true,
+          }
       });
       return NextResponse.json(items);
 

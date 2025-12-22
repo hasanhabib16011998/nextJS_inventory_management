@@ -15,7 +15,7 @@ export default function DataTable({ data, columns }) {
                                 )
                             })
                         }
-                        <th scope="col" class="px-6 py-3 font-medium">Action</th>
+                        <th scope="col" class="px-6 py-3 font-medium">ACTION</th>
                     </tr>
                 </thead>
                 <tbody>

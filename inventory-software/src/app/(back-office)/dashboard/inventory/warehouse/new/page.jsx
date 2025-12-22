@@ -19,12 +19,12 @@ export default function NewWarehouse() {
 
   const selectOptions = [
     {
-      label:"Main",
-      value: "main",
+      title:"Main",
+      id: "main",
     },
     {
-      label:"Branch",
-      value: "branch",
+      title:"Branch",
+      id: "branch",
     },
   ]
 

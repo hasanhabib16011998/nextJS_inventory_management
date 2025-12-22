@@ -1,9 +1,19 @@
-import React from 'react'
+import DataTable from '@/app/components/dashboard/DataTable'
+import FixedHeader from '@/app/components/dashboard/FixedHeader'
+import { getData } from '@/lib/getData'
 
-export default function Brands() {
+
+export default async function Brands() {
+  const brands = await getData("brands");
+  const columns = ["title"];
   return (
     <div>
-        <h2>Brands</h2>
+      <FixedHeader title="Categories" newItemLink="/dashboard/inventory/brands/new" />
+      {/* Table */}
+      <div className='my-4 p-8'>
+        <DataTable data={brands} columns={columns}/>
+      </div>
+
     </div>
   )
 }
