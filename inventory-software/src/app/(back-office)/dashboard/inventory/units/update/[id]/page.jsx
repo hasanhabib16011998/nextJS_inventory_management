@@ -1,14 +1,13 @@
 import { getData } from '@/lib/getData'
 import React from 'react'
-import NewBrand from '../../new/page';
-
+import NewUnit from '../../new/page';
 export default async function Update({params}) {
     const {id} = await params;
-    const data = await getData(`brands/${id}`);
+    const data = await getData(`units/${id}`);
     console.log(data);
   return (
     <>
-        <NewBrand initialData={data} isUpdate={true}/>
+        <NewUnit initialData={data} isUpdate={true}/>
     </>
   )
 }

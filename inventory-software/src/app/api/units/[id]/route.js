@@ -4,16 +4,16 @@ import { NextResponse } from "next/server";
 export async function GET(request,{params}) {
     try{
         const { id } = await params;
-        const brand = await db.brand.findUnique({
+        const unit = await db.unit.findUnique({
             where: { id }
         });
-        return NextResponse.json(brand);
+        return NextResponse.json(unit);
 
     } catch(error) {
         console.log(error);
         return NextResponse.json({
             error,
-            message: "Failed to fetch brand"
+            message: "Failed to fetch unit"
         },{
             status:500,
         });
@@ -23,20 +23,21 @@ export async function GET(request,{params}) {
 export async function PUT(request,{params}) {
     try{
         const {id} = await params;
-        const { title } = await request.json();
-        const brand = await db.brand.update({
+        const { title,abbreviation } = await request.json();
+        const unit = await db.unit.update({
             where: { id },
             data: {
-                title
+                title,
+                abbreviation
             }
         });
-        return NextResponse.json(brand);
+        return NextResponse.json(unit);
 
     } catch(error) {
         console.log(error);
         return NextResponse.json({
             error,
-            message: "Failed to update brand"
+            message: "Failed to update unit"
         },{
             status:500,
         });

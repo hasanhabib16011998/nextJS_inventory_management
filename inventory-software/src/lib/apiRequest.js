@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
 
 
@@ -33,10 +32,9 @@ export async function makePostRequest( setLoading, endPoint, data, resourceName,
       }
 }
 
-export async function makePutRequest( setLoading, endPoint, data, resourceName,redirectUrl, reset ) {
+export async function makePutRequest( setLoading, endPoint, data, resourceName,redirect, reset ) {
 
   try {
-      const route = useRouter();
       setLoading(true);
       console.log(data);
       const baseURL = "http://localhost:3000";
@@ -52,7 +50,7 @@ export async function makePutRequest( setLoading, endPoint, data, resourceName,r
         console.log(response);
         setLoading(false);
         toast.success(`${resourceName} updated successfully!`);
-        router.push(redirectUrl)
+        redirect();
         
       } else {
           setLoading(false);

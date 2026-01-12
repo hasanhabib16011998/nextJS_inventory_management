@@ -7,9 +7,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast';
 import { makePostRequest, makePutRequest } from '@/lib/apiRequest';
-
+import { useRouter } from 'next/navigation';
 
 export default function NewBrand({initialData={}, isUpdate=false}) {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,12 +21,14 @@ export default function NewBrand({initialData={}, isUpdate=false}) {
   });
   const [loading, setLoading] = useState(false);
   const redirectUrl = "/dashboard/inventory/brands";
-
+  function redirect(){
+    router.push("/dashboard/inventory/brands");
+  }
   async function onSubmit(data){
     console.log(data);
     if(isUpdate){
       const endPoint = `api/brands/${initialData.id}`;
-      makePutRequest(setLoading, endPoint, data, "Brand", redirectUrl, reset);
+      makePutRequest(setLoading, endPoint, data, "Brand", redirect, reset);
 
     } else {
       const endPoint = 'api/brands';
