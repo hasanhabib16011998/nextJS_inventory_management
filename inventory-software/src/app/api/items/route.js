@@ -12,7 +12,7 @@ export async function POST(request) {
       categoryId: data.categoryId,
       sku: data.sku,
       barcode: data.barcode,
-      quantity: parseInt(data.qty), // Conversion to Int
+      quantity: parseInt(data.quantity), // Conversion to Int
       unitId: data.unitId,
       brandId: data.brandId,
       supplierId: data.supplierId,

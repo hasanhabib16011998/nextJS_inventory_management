@@ -23,14 +23,24 @@ export default function DataTable({ data=[], columns=[], updateLink }) {
                         data.map((item,i)=>{
                             return(
                                 <tr key={i} className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                                    {columns.map((columnName,i)=>{
-                                        return(
-                                            <td key={i} className='px-6 py-4'>
-                                                {item[columnName]}
-                                            </td>
-                                        )
-
-                                    })}
+                                    {columns.map((columnName, i) => (
+                                        <td key={i} className="px-6 py-4">
+                                            {columnName === "imageURL" ? (
+                                            <img
+                                                src={item[columnName]}
+                                                alt={`Image`}
+                                                className="w-10 h-10 object-cover rounded"
+                                            />
+                                            ) : columnName === "createdAt" ||
+                                            columnName === "updatedAt" ? (
+                                            new Date(item[columnName]).toLocaleDateString()
+                                            ) : columnName.includes(".") ? (
+                                                columnName.split(".").reduce((obj,key)=> obj[key],item)
+                                            ) : (
+                                            item[columnName]
+                                            )}
+                                        </td>
+                                    ))}
                                     <td className="px-6 py-4 flex items-center space-x-4">
                                         <Link href={`${updateLink}/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 flex items-center space-x-2">
                                         <Pencil className='w-4 h-4'/>

@@ -6,27 +6,37 @@ import TextAreaInput from '@/app/components/FormInputs/TextAreaInput';
 import TextInput from '@/app/components/FormInputs/TextInput';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { makePostRequest } from '@/lib/apiRequest';
+import { makePostRequest,makePutRequest } from '@/lib/apiRequest';
+import { useRouter } from 'next/navigation';
 
-export default function CreateItemForm({categories, units, brands, warehouses, suppliers}) {
+export default function CreateItemForm({categories, units, brands, warehouses, suppliers, initialData = {}, isUpdate=false}) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues:initialData});
   const [loading, setLoading] = useState(false);
   const [imageURL, setImageURL] = useState("");
+  const router = useRouter();
 
 
-  
+  const redirectUrl = "/dashboard/inventory/items";
+  function redirect(){
+    router.push("/dashboard/inventory/items");
+  }
 
   async function onSubmit(data){
-    data.imageURL = imageURL;
-    console.log(data);
-    const endPoint = 'api/items';
-    makePostRequest(setLoading, endPoint, data, "Item", reset);
-    setImageURL(""); // Reset image after success
+    if(isUpdate){
+      const endPoint = `api/items/${initialData.id}`;
+      makePutRequest(setLoading, endPoint, data, "Item", redirect, reset);
+
+    } else {
+      data.imageURL = imageURL;
+      const endPoint = 'api/items';
+      makePostRequest(setLoading, endPoint, data, "Item", redirectUrl, reset);
+      setImageURL("");
+    }
   }
   return (
     <>
@@ -43,7 +53,7 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
 
           <TextInput label="Item Barcode" name="barcode" register={register} errors={errors} type="text" containerWidth="w-full" />
 
-          <TextInput label="Item Quantity" name="qty" register={register} errors={errors} type="number" containerWidth="w-full" />
+          <TextInput label="Item Quantity" name="quantity" register={register} errors={errors} type="number" containerWidth="w-full" />
 
           <SelectInput name="unitId" label="Unit" register={register} containerWidth='w-full' options={units} />
 
@@ -55,7 +65,7 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
 
           <SelectInput name="supplierId" label="Select the supplier" register={register} containerWidth='w-full' options={suppliers} />
 
-          <TextInput label="Re-Order Point" name="reorderPoint" register={register} errors={errors} containerWidth="w-full" type="number"/>
+          <TextInput label="Re-Order Point" name="reOrderPoint" register={register} errors={errors} containerWidth="w-full" type="number"/>
 
           <SelectInput name="warehouseId" label="Select the warehouse" register={register} containerWidth='w-full' options={warehouses} />
 
@@ -73,7 +83,7 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
 
         </div>
 
-        <SubmitButton isLoading={loading} title="item" />
+        <SubmitButton isLoading={loading} title={ isUpdate ? "Updated Item":"New Item" } />
 
       </form>
 
