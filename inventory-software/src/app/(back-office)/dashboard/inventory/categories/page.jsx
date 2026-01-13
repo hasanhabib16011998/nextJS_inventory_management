@@ -8,6 +8,7 @@ export default async function Categories() {
   const columns = ["title","description"];
   const data = categories.map(obj=>{
     return {
+      id:obj.id,
       title: obj.title,
       description: obj.description
     };
@@ -17,7 +18,7 @@ export default async function Categories() {
       <FixedHeader title="Categories" newItemLink="/dashboard/inventory/categories/new" />
       {/* Table */}
       <div className='my-4 p-8'>
-        <DataTable data={data} columns={columns}/>
+        <DataTable data={data} columns={columns} resourceTitle="categories"/>
       </div>
 
     </div>

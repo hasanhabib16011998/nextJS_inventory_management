@@ -67,3 +67,22 @@ export async function PUT(request,{params}) {
         });
     }
 }
+
+export async function DELETE(request,{params}) {
+    try{
+        const { id } = await params;
+        const item = await db.item.delete({
+            where: { id }
+        });
+        return NextResponse.json(item);
+
+    } catch(error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message: "Failed to delete item"
+        },{
+            status:500,
+        });
+    }
+}
