@@ -34,7 +34,7 @@ export default function CreateItemForm({categories, units, brands, warehouses, s
     } else {
       data.imageURL = imageURL;
       const endPoint = 'api/items';
-      makePostRequest(setLoading, endPoint, data, "Item", redirectUrl, reset);
+      makePostRequest(setLoading, endPoint, data, "Item", redirect, reset);
       setImageURL("");
     }
   }

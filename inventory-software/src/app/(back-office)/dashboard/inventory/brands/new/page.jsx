@@ -32,7 +32,7 @@ export default function NewBrand({initialData={}, isUpdate=false}) {
 
     } else {
       const endPoint = 'api/brands';
-      makePostRequest(setLoading, endPoint, data, "Brand", redirectUrl, reset);
+      makePostRequest(setLoading, endPoint, data, "Brand", redirect, reset);
     }
   }
 

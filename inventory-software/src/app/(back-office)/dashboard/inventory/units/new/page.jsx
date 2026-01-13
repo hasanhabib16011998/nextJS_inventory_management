@@ -30,7 +30,7 @@ export default function NewUnit({initialData={}, isUpdate=false}) {
   
     } else {
         const endPoint = 'api/units';
-        makePostRequest(setLoading, endPoint, data, "Unit", redirectUrl, reset);
+        makePostRequest(setLoading, endPoint, data, "Unit", redirect, reset);
     }
   }
 

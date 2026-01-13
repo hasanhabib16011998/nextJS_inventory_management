@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 
 
-export async function makePostRequest( setLoading, endPoint, data, resourceName, reset ) {
+export async function makePostRequest( setLoading, endPoint, data, resourceName, redirect, reset ) {
 
     try {
         setLoading(true);
@@ -18,7 +18,7 @@ export async function makePostRequest( setLoading, endPoint, data, resourceName,
         if(response.ok){
           console.log(response);
           toast.success(`New ${resourceName} created successfully!`);
-          reset();
+          redirect();
           setLoading(false)
         } else {
             setLoading(false);
