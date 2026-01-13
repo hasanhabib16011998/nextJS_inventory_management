@@ -7,7 +7,9 @@ export default function DataTable({ data=[], columns=[], resourceTitle }) {
     
     return (
         <div className="overflow-x-auto bg-white shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left rtl:text-right text-body">
+        {
+            data.length>0 ? (
+                <table className="w-full text-sm text-left rtl:text-right text-body">
                 <thead className="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                     <tr>
                         {
@@ -52,11 +54,16 @@ export default function DataTable({ data=[], columns=[], resourceTitle }) {
                                         <DeleteBtn id={item.id} resourceTitle={resourceTitle}/>
                                     </td>
                                 </tr>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
                 </tbody>
-            </table>
+                </table>
+                ):(
+                    <p className='p-4 text-sm bg-white text-center'>There is no data to display</p>
+                )
+        }
+            
         </div>
 
     )

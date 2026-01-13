@@ -12,7 +12,27 @@ export async function POST(request){
                 notes,
                 referenceNumber,
             }
+        });
+
+        //adjust the item
+        //get the item
+        const itemToUpdate = await db.item.findUnique({
+            where:{
+                id:itemId
+            },
         })
+        const newQty = itemToUpdate.quantity + parseInt(addStockQty)
+        const updatedItem = await db.item.update({
+            where:{
+                id:itemId
+            },
+            data: {
+                quantity:newQty,
+
+            }
+        });
+
+        //adjust the warehouse
         console.log(adjustment);
         return NextResponse.json(adjustment);
     } catch(error) {

@@ -5,7 +5,7 @@ import { getData } from '@/lib/getData'
 
 export default async function Items() {
   const items = await getData("items");
-  const columns = ["imageURL","title","category.title","sellingPrice"];
+  const columns = ["imageURL","title","quantity","category.title","sellingPrice"];
   return (
     <div>
       <FixedHeader title="Items" newItemLink="/dashboard/inventory/items/new" />
