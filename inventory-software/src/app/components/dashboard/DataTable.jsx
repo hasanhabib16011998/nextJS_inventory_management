@@ -49,7 +49,7 @@ export default function DataTable({ data=[], columns=[], resourceTitle }) {
                                         <span>Edit</span>
                                         </Link>
 
-                                        <DeleteBtn/>
+                                        <DeleteBtn id={item.id} resourceTitle={resourceTitle}/>
                                     </td>
                                 </tr>
                             )

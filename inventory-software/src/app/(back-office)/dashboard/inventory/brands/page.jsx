@@ -8,7 +8,7 @@ export default async function Brands() {
   const columns = ["title"];
   return (
     <div>
-      <FixedHeader title="Categories" newItemLink="/dashboard/inventory/brands/new" />
+      <FixedHeader title="Brands" newItemLink="/dashboard/inventory/brands/new" />
       {/* Table */}
       <div className='my-4 p-8'>
         <DataTable data={brands} columns={columns} resourceTitle="brands"/>
