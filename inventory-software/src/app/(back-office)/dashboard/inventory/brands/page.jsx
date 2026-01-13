@@ -11,7 +11,7 @@ export default async function Brands() {
       <FixedHeader title="Categories" newItemLink="/dashboard/inventory/brands/new" />
       {/* Table */}
       <div className='my-4 p-8'>
-        <DataTable data={brands} columns={columns} updateLink="/dashboard/inventory/brands/update"/>
+        <DataTable data={brands} columns={columns} resourceTitle="brands"/>
       </div>
 
     </div>

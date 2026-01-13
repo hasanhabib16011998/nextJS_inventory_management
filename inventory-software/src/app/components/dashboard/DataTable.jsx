@@ -1,8 +1,10 @@
-import { Pencil, Trash, Trash2 } from 'lucide-react'
+import { Pencil } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import DeleteBtn from './DeleteBtn'
 
-export default function DataTable({ data=[], columns=[], updateLink }) {
+export default function DataTable({ data=[], columns=[], resourceTitle }) {
+    
     return (
         <div className="overflow-x-auto bg-white shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-body">
@@ -42,14 +44,12 @@ export default function DataTable({ data=[], columns=[], updateLink }) {
                                         </td>
                                     ))}
                                     <td className="px-6 py-4 flex items-center space-x-4">
-                                        <Link href={`${updateLink}/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 flex items-center space-x-2">
+                                        <Link href={`/dashboard/inventory/${resourceTitle}/update/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 flex items-center space-x-2">
                                         <Pencil className='w-4 h-4'/>
                                         <span>Edit</span>
                                         </Link>
-                                    <button className="font-medium text-red-600 dark:red-blue-500 flex items-center space-x-1">
-                                    <Trash2 className='w-4 h-4'/>
-                                    <span>Delete</span>
-                                    </button>
+
+                                        <DeleteBtn/>
                                     </td>
                                 </tr>
                             )
