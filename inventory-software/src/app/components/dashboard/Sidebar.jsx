@@ -90,7 +90,7 @@ export default function Sidebar() {
                 </div>
                 {/* Links */}
                 <nav className='flex flex-col gap-8 px-3'>
-                    <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 px-2 rounded-md' href=''>
+                    <Link className='flex items-center space-x-2 bg-blue-600 text-slate-50 p-2 px-2 rounded-md' href='/dashboard/home/overview'>
                         <HomeIcon className='w-4 h-4' />
                         <span>Home</span>
                     </Link>
